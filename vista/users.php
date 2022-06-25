@@ -1,5 +1,4 @@
 <?php 
-//conexion con la base de datos el id de la tabla//
   session_start();
   include_once "php/config.php";
   if(!isset($_SESSION['unique_id'])){
@@ -11,16 +10,13 @@
   <div class="wrapper">
     <section class="users">
       <header>
-           <!--crea una clase contenedor --> 
         <div class="content">
-             <!--se trae datos de la tabla users--> 
           <?php 
             $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
             if(mysqli_num_rows($sql) > 0){
               $row = mysqli_fetch_assoc($sql);
             }
           ?>
-             <!-- link para llevar a registrar--> 
           <img src="php/images/<?php echo $row['img']; ?>" alt="">
           <div class="details">
             <span><?php echo $row['fname']. " " . $row['lname'] ?></span>

@@ -1,4 +1,11 @@
+<?php 
+include("../php/config.php");
+session_start(); 
+$select="SELECT*FROM usuarios";
+$resultado=mysqli_query($conn,$select);
+$result = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
+?>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -21,32 +28,26 @@
     </head>
     <body>
     <?php 
-    include("../php/config.php");
-    session_start(); 
-    $select="SELECT*FROM users";
-    $resultado=mysqli_query($conn,$select);
-    $result = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
-    $foto = $_SESSION['unique_id'];
-    $id = $_SESSION['unique_id'];
+    $foto = $_SESSION['user_id'];
+    $id = $_SESSION['user_id'];
     include '../php/config.php';
-    $consulta = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = '$unique_id';");
+    $consulta = mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$id';");
     $valores = mysqli_fetch_array($consulta);
-    $fname = $valores['fname'];
-    $lname = $valores['lname'];
+    $nombre = $valores['fname'];
     $email = $valores['email'];
-    $img = $valores['images'] ?>
+    $foto = $valores['img'] ?>
         <div class="container emp-profile">
             <form action="foto.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
                         <ul>
-                            <li class="button_user"><a class="button" href="../php/logout.php">Cerrar sesion</a>
+                            <li class="button_user"><a class="button" href="../phpa/index.html">Cerrar sesion</a>
                         </ul>
                         <div class="profile-img" >
-                            <img src="<?php ; echo $img; ?>"/>
+                            <img src="<?php ; echo $foto; ?>"/>
                             <div class="file btn btn-lg btn-primary" class="row">
                                
-                                <input  type="text" name="unique_id" value="<?php echo $unique_id; ?>" style="display: none;">
+                                <input  type="text" name="id" value="<?php echo $id; ?>" style="display: none;">
                                 <input type="file" name="nfoto" class="col-md-6"> Cambiar foto
                                 <button class="col-md-7" type="submit" class="btn btn-primary">Actualizar</button>
                             </div>
@@ -55,15 +56,15 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        <?php echo $fname; ?>
+                                        <?php echo $nombre; ?>
                                     </h5>
                                     <h6>
                                         <?php foreach($result as $fila):?>
                                             <td><?php if ($fila['rol_id'] == '1'){ 
-                                    $rol = "paciente: ";
+                                    $rol = "Usuario: ";
                                     }else{
                                         if ($fila['rol_id'] == '2'){
-                                            $rol = "doctor";
+                                            $rol = "Administrador";
                                         }
                                     }echo $rol;?></td>
                                             <?php endforeach ?>

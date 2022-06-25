@@ -1,11 +1,6 @@
-<?php 
-//conexion con la base de datos el id de la tabla//
-  session_start();
-  include_once "../php/config.php";
-  if(!isset($_SESSION['unique_id'])){
-    header("location: index.html");
-  }
-?>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -56,7 +51,7 @@
                         <a href="../phpa/indexlogin.php">Inicio</a>
                     </li>
                     <li>
-                        <a href="../phpa/alarma.html">Alarmas</a>
+                        <a href="C:\Users\hp\OneDrive\Escritorio\spicyo\blog.html">Alarmas</a>
                     </li>
                     <li>
                         <a href="../users.php">Chat</a>
@@ -71,7 +66,7 @@
                         <a href="C:\Users\hp\OneDrive\Escritorio\spicyo\about.html">¿Quienes somos nosotros?</a>
                     </li>
                     <li>
-                        <a href="../phpa/perfil.php">Perfil <img src="images\perfilpicture.jpg" alt="" marginwidth="30"></a>
+                        <a href="perfildo.php">Perfil <img src="images\perfilpicture.jpg" alt="" marginwidth="30"></a>
                     </li>
 					
                 </ul>
@@ -96,7 +91,7 @@
                                 <li class="dinone">Contactos:<img style="margin-right: 15px;margin-left: 15px;" src="images/phone_icon.png" alt="#"><a href="#">300-3648-795</a></li>
                                 <li class="dinone"><img style="margin-right: 15px;" src="images/mail_icon.png" alt="#"><a href="#">Nosotros@misena.edu.co</a></li>
                                 <li class="dinone"><img style="margin-right: 15px;height: 21px;position: relative;top: -2px;" src="images/location_icon.png" alt="#"><a href="#">104 Medellín , Colombia</a></li>
-                                <a href="../php/logout.php?logout_id=<?php echo $_SESSION['unique_id']; ?>" class="logout">cerrar session</a>
+                                <li class="button_user"><a class="button" href="../phpa/index.html">Cerrar sesion</a>
                                 <li><img style="margin-right: 10px;" src="images/search_icon.png" alt="#"></li>
                                 <li>
                                     <button type="button" id="sidebarCollapse">

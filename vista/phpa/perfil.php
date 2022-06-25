@@ -11,7 +11,7 @@
 <body>
 <?php include '../php/config.php';
 	session_start();
-	if (isset($_SESSION['unique_id'])) {
+	if (isset($_SESSION['id'])) {
 		
 	}else{
 		?>
@@ -20,13 +20,12 @@
 		</script>
 		<?php 
 	}
-	$id = $_SESSION['unique_id'];
-	$consulta = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = '$id';");
+	$id = $_SESSION['id'];
+	$consulta = mysqli_query($cone, "SELECT * FROM usuarios WHERE id = '$id';");
 	$valores = mysqli_fetch_array($consulta);
-	$fname = $valores['fname'];
-    $lname = $valores['lname'];
+	$nombre = $valores['nombre'];
 	$email = $valores['email'];
-	$img= $valores['img'];
+	$foto = $valores['foto'];
 	 ?>
 <style type="text/css">
     
@@ -443,7 +442,7 @@ body {
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada">
                 <div class="perfil-usuario-avatar">
-                    <img src="../php/images/<?php echo $img; ?>">
+                    <img src="<?php echo $foto; ?>">
                     <a href="cambiarfoto.php"><button type="button" class="boton-avatar">
                         <i class="far fa-image"></i></a>
                     </button>
@@ -452,7 +451,7 @@ body {
         </div>
         <div class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
-                <h1><?php echo $fname.' '.$lname; ?></h1>
+                <h1><?php echo $nombre; ?></h1>
             </div>
             <div class="perfil-usuario-footer">
                 <ul class="lista-datos">

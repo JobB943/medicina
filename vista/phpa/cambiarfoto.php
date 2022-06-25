@@ -15,18 +15,18 @@
 	<title>Cambiar foto de perfil</title>
 </head>
 <body>
-	<?php session_start(); $img = $_SESSION['unique_id'];
-	$unique_id = $_SESSION['unique_id'];
+	<?php session_start(); $foto = $_SESSION['id'];
+	$id = $_SESSION['id'];
 	include 'config.php';
-	$consulta = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = '$unique_id';");
+	$consulta = mysqli_query($conn, "SELECT * FROM usuarios WHERE id = '$id';");
 	$valores = mysqli_fetch_array($consulta);
-	$fname = $valores['fname'];
+	$nombre = $valores['nombre'];
 	$email = $valores['email'];
-	$img = $valores['img'] ?>
+	$foto = $valores['foto'] ?>
 	<h1>Cambia tu foto de perfil</h1>
-	<img src="<?php ; echo $img; ?>">
+	<img src="<?php ; echo $foto; ?>">
 	<form action="foto.php" method="post" enctype="multipart/form-data">
-		<input type="text" name="id" value="<?php echo $unique_id; ?>" style="display: none;">
+		<input type="text" name="id" value="<?php echo $id; ?>" style="display: none;">
 		Ingresa tu nuerva foto de perfil
 		<input type="file" name="nfoto">
 		<button type="submit" class="btn btn-primary">Actualizar</button>
